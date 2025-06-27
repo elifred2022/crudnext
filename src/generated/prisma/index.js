@@ -153,7 +153,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -164,7 +163,7 @@ const config = {
   },
   "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel task {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String\n  createdAt   DateTime @default(now())\n}\n",
   "inlineSchemaHash": "16710bbb05089782de3eeb8d8fa2d0c36a414ad697e171b0074697b9752c4e9e",
-  "copyEngine": true
+  "copyEngine": false
 }
 
 const fs = require('fs')
@@ -201,9 +200,3 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-// file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
-// file annotations for bundling tools to include these files
-path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "src/generated/prisma/schema.prisma")
